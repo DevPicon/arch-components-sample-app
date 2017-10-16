@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Arch Components Sample Application</string>
+    <string name="btn_add">Agregar Tarea</string>
+    <string name="empty">Sin elementos</string>
 </resources>
