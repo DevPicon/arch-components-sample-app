@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TaskDaoTest {
 
-    lateinit var database : AppDatabase
+    private lateinit var database : AppDatabase
 
     private val DESCRIPTION = "Tarea 1"
 
@@ -44,7 +44,6 @@ class TaskDaoTest {
                 assertEquals(DESCRIPTION, task.description)
             }
         }
-
 
     }
 
