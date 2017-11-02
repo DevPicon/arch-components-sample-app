@@ -2,6 +2,7 @@ package com.devpicon.android.myarchcomponentssampleapplication
 
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import android.support.test.runner.AndroidJUnit4
 import io.reactivex.Flowable
@@ -13,6 +14,8 @@ import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.Rule
+
 
 /**
  * Created by devpicon on 11/2/17.
@@ -20,21 +23,27 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class TaskDaoTest {
 
-    private lateinit var database : AppDatabase
+    private lateinit var database: AppDatabase
 
     private val DESCRIPTION = "Tarea 1"
 
+    @JvmField
+    @Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
     @Before
-    fun initDb(){
+    fun initDb() {
         database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                AppDatabase::class.java).build()
+                AppDatabase::class.java)
+                .allowMainThreadQueries()
+                .build()
     }
 
     @Test
-    fun insertAndGetTask(){
+    fun insertAndGetTask() {
         database.taskDao().insertTask(Task(0, DESCRIPTION))
 
-        val allTasks :Flowable<List<Task>> = database.taskDao().getAllTasks()
+        val allTasks: Flowable<List<Task>> = database.taskDao().getAllTasks()
 
         allTasks.subscribe { tasks ->
             run {
@@ -48,7 +57,7 @@ class TaskDaoTest {
     }
 
     @After
-    fun closeDb(){
+    fun closeDb() {
         database.close()
     }
 
