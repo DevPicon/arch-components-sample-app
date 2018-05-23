@@ -9,7 +9,7 @@ import com.devpicon.android.myarchcomponentssampleapplication.AppDatabase
  */
 class MyApplication : Application() {
     companion object {
-        var database: AppDatabase? = null
+        lateinit var database: AppDatabase
     }
 
     override fun onCreate() {

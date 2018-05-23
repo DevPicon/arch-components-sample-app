@@ -1,5 +1,6 @@
-package com.devpicon.android.myarchcomponentssampleapplication
+package com.devpicon.android.myarchcomponentssampleapplication.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import io.reactivex.Flowable
@@ -10,7 +11,7 @@ import io.reactivex.Flowable
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM Task")
-    fun getAllTasks(): Flowable<List<Task>>
+    fun getAllTasks(): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTask(task: Task)

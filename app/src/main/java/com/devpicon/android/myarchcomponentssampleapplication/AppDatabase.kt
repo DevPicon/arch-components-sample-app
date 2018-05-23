@@ -2,6 +2,7 @@ package com.devpicon.android.myarchcomponentssampleapplication
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
+import com.devpicon.android.myarchcomponentssampleapplication.dao.TaskDao
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 
 /**
