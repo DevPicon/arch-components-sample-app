@@ -5,12 +5,12 @@ import android.support.test.InstrumentationRegistry
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import android.support.test.runner.AndroidJUnit4
+import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import io.reactivex.Flowable
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

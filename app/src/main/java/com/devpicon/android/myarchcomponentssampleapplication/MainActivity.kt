@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.devpicon.android.myarchcomponentssampleapplication.app.MyApplication
+import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

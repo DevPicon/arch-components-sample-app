@@ -1,6 +1,7 @@
 package com.devpicon.android.myarchcomponentssampleapplication
 
 import android.arch.persistence.room.*
+import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import io.reactivex.Flowable
 
 /**
