@@ -2,7 +2,7 @@ package com.devpicon.android.myarchcomponentssampleapplication.app
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import com.devpicon.android.myarchcomponentssampleapplication.AppDatabase
+import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 
 /**
  * Created by devpicon on 10/13/17.
