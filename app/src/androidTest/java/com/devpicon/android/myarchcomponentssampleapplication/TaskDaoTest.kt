@@ -6,11 +6,10 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
-import org.hamcrest.MatcherAssert
-import org.hamcrest.core.Is
+import io.reactivex.Flowable
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,28 +37,28 @@ class TaskDaoTest {
 
     @Test
     fun insertAndGetTask() {
+        // Insert
         database.taskDao().insertTask(Task(0, DESCRIPTION))
-        val foundTask = database.taskDao().getTask(DESCRIPTION)
+
+        // Query an specific description
+        val foundTask: Task = database.taskDao().getTask(DESCRIPTION)
         assertNotNull(foundTask)
         assertEquals(DESCRIPTION, foundTask.description)
 
-        val allTasks = database.taskDao().getAllTasks()
+        // Query all elements
+        val allTasks: Flowable<List<Task>> = database.taskDao().getAllTasks()
         allTasks.subscribe { tasks ->
             run {
                 tasks.size
-                MatcherAssert.assertThat(tasks.size, Is.`is`(1))
+                assertThat(tasks.size, `is`(1))
                 val task: Task = tasks[0]
                 assertEquals(DESCRIPTION, task.description)
             }
         }
-
-
     }
-
 
     @After
     fun closeDb() {
         database.close()
     }
-
 }
