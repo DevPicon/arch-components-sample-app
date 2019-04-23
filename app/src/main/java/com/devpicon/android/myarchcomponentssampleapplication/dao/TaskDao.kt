@@ -1,9 +1,8 @@
 package com.devpicon.android.myarchcomponentssampleapplication.dao
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
-import io.reactivex.Flowable
 
 /**
  * Created by devpicon on 10/13/17.
@@ -12,6 +11,9 @@ import io.reactivex.Flowable
 interface TaskDao {
     @Query("SELECT * FROM Task")
     fun getAllTasks(): LiveData<List<Task>>
+
+    @Query("SELECT * FROM Task WHERE description = :description")
+    fun getTask(description:String): Task
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTask(task: Task)

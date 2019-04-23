@@ -3,11 +3,10 @@ package com.devpicon.android.myarchcomponentssampleapplication
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
-import com.devpicon.android.myarchcomponentssampleapplication.viewmodel.TaskViewModel
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 

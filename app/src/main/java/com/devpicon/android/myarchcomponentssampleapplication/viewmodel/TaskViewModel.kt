@@ -1,8 +1,8 @@
 package com.devpicon.android.myarchcomponentssampleapplication.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.devpicon.android.myarchcomponentssampleapplication.app.MyApplication
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import com.devpicon.android.myarchcomponentssampleapplication.repository.TaskRepository

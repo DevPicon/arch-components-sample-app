@@ -1,21 +1,17 @@
 package com.devpicon.android.myarchcomponentssampleapplication
 
-import android.arch.persistence.room.Room
-import android.support.test.InstrumentationRegistry
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
-
-import android.support.test.runner.AndroidJUnit4
+import android.content.Context
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
-import io.reactivex.Flowable
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.`is`
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.Rule
 
 
 /**
@@ -28,13 +24,10 @@ class TaskDaoTest {
 
     private val DESCRIPTION = "Tarea 1"
 
-    @JvmField
-    @Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
-
     @Before
     fun initDb() {
-        database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        database = Room.inMemoryDatabaseBuilder(context,
                 AppDatabase::class.java)
                 .allowMainThreadQueries()
                 .build()
@@ -43,19 +36,11 @@ class TaskDaoTest {
     @Test
     fun insertAndGetTask() {
         database.taskDao().insertTask(Task(0, DESCRIPTION))
-
-        val allTasks: Flowable<List<Task>> = database.taskDao().getAllTasks()
-
-        allTasks.subscribe { tasks ->
-            run {
-                tasks.size
-                assertThat(tasks.size, `is`(1))
-                val task: Task = tasks[0]
-                assertEquals(DESCRIPTION, task.description)
-            }
-        }
-
+        val foundTask = database.taskDao().getTask(DESCRIPTION)
+        assertNotNull(foundTask)
+        assertEquals(DESCRIPTION, foundTask.description)
     }
+
 
     @After
     fun closeDb() {

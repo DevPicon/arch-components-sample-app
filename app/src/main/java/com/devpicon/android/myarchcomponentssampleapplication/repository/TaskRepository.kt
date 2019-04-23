@@ -1,10 +1,10 @@
 package com.devpicon.android.myarchcomponentssampleapplication.repository
 
-import android.arch.lifecycle.LiveData
 import android.os.AsyncTask
-import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
+import androidx.lifecycle.LiveData
 import com.devpicon.android.myarchcomponentssampleapplication.app.MyApplication
 import com.devpicon.android.myarchcomponentssampleapplication.dao.TaskDao
+import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 
 class TaskRepository(val application: MyApplication) {

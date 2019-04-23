@@ -1,7 +1,7 @@
 package com.devpicon.android.myarchcomponentssampleapplication.entity
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /**
  * Created by devpicon on 10/13/17.

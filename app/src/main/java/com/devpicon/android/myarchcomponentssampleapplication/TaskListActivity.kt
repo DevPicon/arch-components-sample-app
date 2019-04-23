@@ -1,18 +1,18 @@
 package com.devpicon.android.myarchcomponentssampleapplication
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.devpicon.android.myarchcomponentssampleapplication.adapter.TaskListAdapter
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import com.devpicon.android.myarchcomponentssampleapplication.viewmodel.TaskViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TaskListActivity : AppCompatActivity() {
 
@@ -29,8 +29,8 @@ class TaskListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
-        taskViewModel.getAllTasks().observe(this, Observer<List<Task>>() {
-            it?.let { adapter.setTasks(it.toMutableList()) }
+        taskViewModel.getAllTasks().observe(this, Observer<List<Task>> { list ->
+            list?.let { adapter.setTasks(it.toMutableList()) }
         })
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)

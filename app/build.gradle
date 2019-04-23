@@ -11,7 +11,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,32 +25,32 @@ dependencies {
     // Take a look there are new dependency configurations
     // https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration?utm_source=android-studio#new_configurations
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation "com.android.support:recyclerview-v7:28.0.0"
-    implementation "com.android.support:design:28.0.0"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.appCompatVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintVersion"
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
 
-    kapt "android.arch.persistence.room:compiler:$rootProject.roomVersion"
-    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
 
     // Room - Test Helpers
-    testImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+    testImplementation "androidx.room:room-testing:$rootProject.roomVersion"
     // Room - RxJava support (optional)
-    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomVersion"
+    implementation "androidx.room:room-rxjava2:$rootProject.roomVersion"
 
     // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    kapt "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
-
-    androidTestImplementation "android.arch.core:core-testing:1.1.1"
-    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleExtensionVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
 
     implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // Testing-only dependencies
+    androidTestImplementation 'androidx.test:core:' + rootProject.coreVersion
+    androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
+    androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
+    androidTestImplementation 'androidx.test:rules:' + rootProject.rulesVersion
 }
