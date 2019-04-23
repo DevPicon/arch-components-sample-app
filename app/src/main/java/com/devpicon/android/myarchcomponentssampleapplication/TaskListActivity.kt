@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,9 +28,8 @@ class TaskListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
-        taskViewModel.getAllTasks().observe(this, Observer<List<Task>> { list ->
-            list?.let { adapter.setTasks(it.toMutableList()) }
-        })
+        val taskList = taskViewModel.getAllTasks().blockingSingle()
+        adapter.setTasks(taskList.toMutableList())
 
         val fab = findViewById<FloatingActionButton>(R.id.fab)
 

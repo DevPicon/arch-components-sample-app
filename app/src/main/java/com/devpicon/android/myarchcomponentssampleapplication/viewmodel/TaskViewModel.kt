@@ -2,16 +2,15 @@ package com.devpicon.android.myarchcomponentssampleapplication.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import com.devpicon.android.myarchcomponentssampleapplication.app.MyApplication
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 import com.devpicon.android.myarchcomponentssampleapplication.repository.TaskRepository
+import io.reactivex.Flowable
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: TaskRepository = TaskRepository(application as MyApplication)
+    private val repository: TaskRepository = TaskRepository()
 
-    private val allTasks: LiveData<List<Task>>
+    private val allTasks: Flowable<List<Task>>
 
     init {
         allTasks = repository.getAllTasks()
@@ -21,7 +20,7 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         repository.insertTask(task)
     }
 
-    fun getAllTasks(): LiveData<List<Task>> {
+    fun getAllTasks(): Flowable<List<Task>> {
         return allTasks
     }
 

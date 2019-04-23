@@ -1,16 +1,16 @@
 package com.devpicon.android.myarchcomponentssampleapplication.repository
 
 import android.os.AsyncTask
-import androidx.lifecycle.LiveData
 import com.devpicon.android.myarchcomponentssampleapplication.app.MyApplication
 import com.devpicon.android.myarchcomponentssampleapplication.dao.TaskDao
 import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
+import io.reactivex.Flowable
 
-class TaskRepository(val application: MyApplication) {
+class TaskRepository {
 
     private val taskDao: TaskDao
-    private val allTasks: LiveData<List<Task>>
+    private val allTasks: Flowable<List<Task>>
 
     init {
         val database: AppDatabase = MyApplication.database
@@ -18,7 +18,7 @@ class TaskRepository(val application: MyApplication) {
         allTasks = taskDao.getAllTasks()
     }
 
-    fun getAllTasks(): LiveData<List<Task>> = this.allTasks
+    fun getAllTasks(): Flowable<List<Task>> = this.allTasks
 
     fun insertTask(task: Task) {
         InsertAsyncTask(taskDao).execute(task)
