@@ -7,6 +7,7 @@ import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
 
 /**
  * Created by devpicon on 10/13/17.
+ * Updated by devpicon on 04/23/19.
  */
 @Database(entities = [Task::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

@@ -6,6 +6,7 @@ import com.devpicon.android.myarchcomponentssampleapplication.database.AppDataba
 
 /**
  * Created by devpicon on 10/13/17.
+ * Updated by devpicon on 04/23/19.
  */
 class MyApplication : Application() {
     companion object {
