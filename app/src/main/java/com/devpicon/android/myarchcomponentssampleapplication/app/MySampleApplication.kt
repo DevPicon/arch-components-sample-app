@@ -15,6 +15,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        MyApplication.database = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "sample-db").build()
+        database = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "sample-db").build()
     }
 }
