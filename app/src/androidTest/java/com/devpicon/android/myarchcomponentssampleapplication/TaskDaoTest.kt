@@ -6,6 +6,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.devpicon.android.myarchcomponentssampleapplication.database.AppDatabase
 import com.devpicon.android.myarchcomponentssampleapplication.entity.Task
+import org.hamcrest.MatcherAssert
+import org.hamcrest.core.Is
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -40,6 +42,18 @@ class TaskDaoTest {
         val foundTask = database.taskDao().getTask(DESCRIPTION)
         assertNotNull(foundTask)
         assertEquals(DESCRIPTION, foundTask.description)
+
+        val allTasks = database.taskDao().getAllTasks()
+        allTasks.subscribe { tasks ->
+            run {
+                tasks.size
+                MatcherAssert.assertThat(tasks.size, Is.`is`(1))
+                val task: Task = tasks[0]
+                assertEquals(DESCRIPTION, task.description)
+            }
+        }
+
+
     }
 
 
