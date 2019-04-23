@@ -5,7 +5,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.devpicon.android.myarchcomponentssampleapplication"
         minSdkVersion 16
